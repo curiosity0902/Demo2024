@@ -1,0 +1,41 @@
+﻿<Application x:Class="Demo2024.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Demo2024"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style x:Key="TextBlWelcome" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="46"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+
+        <Style x:Key="TextBoxWelcome" TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+        <Style x:Key="PasswordBoxWelcome" TargetType="PasswordBox">
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="42"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+
+        <Style x:Key="RoundedButtonWithShadow" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="15" Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="#04A0FF"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="3"/>
+        </Style>
+    </Application.Resources>
+</Application>
