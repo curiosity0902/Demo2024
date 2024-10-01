@@ -123,5 +123,20 @@ namespace Demo2024.Pages
 
             Refresh1();
         }
+
+        private void CheckLessonBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new WelcomePage());
+        }
+
+        private void AppliicationAdminBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

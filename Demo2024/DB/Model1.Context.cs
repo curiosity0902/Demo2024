@@ -13,10 +13,10 @@ namespace Demo2024.DB
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SchoolPracticeEntities : DbContext
+    public partial class SchoolPracticeEntities1 : DbContext
     {
-        public SchoolPracticeEntities()
-            : base("name=SchoolPracticeEntities")
+        public SchoolPracticeEntities1()
+            : base("name=SchoolPracticeEntities1")
         {
         }
     
@@ -35,6 +35,7 @@ namespace Demo2024.DB
         public virtual DbSet<ProductSale> ProductSale { get; set; }
         public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<ServicePhoto> ServicePhoto { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tag> Tag { get; set; }
     }
 }

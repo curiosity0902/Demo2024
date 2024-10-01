@@ -32,7 +32,7 @@ namespace Demo2024.Windoww
 
             NameTb.Text = contextService.Title;
             DescriptionTb.Text = contextService.Description;
-            CostTb.Text = (contextService.Cost).ToString();
+            CostTb.Text = (contextService.NewCost).ToString();
             SaleTb.Text = (contextService.Discount).ToString();
             DurationTb.Text = (contextService.DurationInSeconds).ToString();
         }

@@ -8,7 +8,7 @@ namespace Demo2024.DB
 {
     public class DBConnection
     {
-        public static SchoolPracticeEntities schoolPractice = new SchoolPracticeEntities();
+        public static SchoolPracticeEntities1 schoolPractice = new SchoolPracticeEntities1();
 
         public static Client loginedClient;
     }
