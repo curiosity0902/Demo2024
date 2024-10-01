@@ -22,81 +22,49 @@ namespace Demo2024.Pages
     /// </summary>
     public partial class AllServicesPage : Page
     {
-        public static List<Service> services { get; set; }
-        public static Client loggedClient;
+        public static List<Service> services { get; set; }   
         public AllServicesPage()
         {
             InitializeComponent();
 
-            loggedClient = DBConnection.loginedClient;
+            Refresh(0);
+            FiltrSaleCb.SelectedIndex = 0;
 
 
             services = new List<Service>(DBConnection.schoolPractice.Service.ToList());
             ProductLV.ItemsSource = services;
             this.DataContext = this;
-
-            FiltrCb.Items.Add("По умолчанию");
-            FiltrCb.Items.Add("По убыванию");
-            FiltrCb.Items.Add("По возрастанию");
-
-            FiltrSaleCb.Items.Add("от 0 до 5%");
-            FiltrSaleCb.Items.Add("от 5% до 15%");
-            FiltrSaleCb.Items.Add("от 15% до 30%");
-            FiltrSaleCb.Items.Add("от 30% до 70%");
-            FiltrSaleCb.Items.Add("от 70% до 100%");
-            FiltrSaleCb.Items.Add("Все");
         }
 
-        private void Refresh()
+        private void Refresh(int i)
         {
-            List<Service> services = new List<Service>(DBConnection.schoolPractice.Service.ToList());
-
-            {
-                services = services.Where(i => i.Title.ToLower().StartsWith(SearchTbx.Text.Trim().ToLower())
-                   || i.Description.ToLower().StartsWith(SearchTbx.Text.Trim().ToLower())).ToList();
-            }
-
-            ProductLV.ItemsSource = services;
-
-            if (FiltrCb.SelectedIndex == 0)
-            {
-                ProductLV.ItemsSource = services;
-            }
-            if (FiltrCb.SelectedIndex == 1)
-            {
-                ProductLV.ItemsSource = services.OrderByDescending(x => x.Cost).ToList();
-            }
+            var filtred = DBConnection.schoolPractice.Service.ToList();
+            var allService = DBConnection.schoolPractice.Service.ToList();
+            var searchText = SearchTbx.Text.ToLower();
+            if (FiltrSaleCb != null && FiltrSaleCb.SelectedIndex == 1)
+                filtred = filtred.Where(f => Convert.ToString(f.Discount.Value) == f.Discount0).ToList();
+            if (FiltrSaleCb != null && FiltrSaleCb.SelectedIndex == 2)
+                filtred = filtred.Where(f => Convert.ToString(f.Discount.Value) == f.Discount5).ToList();
+            if (FiltrSaleCb != null && FiltrSaleCb.SelectedIndex == 3)
+                filtred = filtred.Where(f => Convert.ToString(f.Discount.Value) == f.Discount15).ToList();
+            if (FiltrSaleCb != null && FiltrSaleCb.SelectedIndex == 4)
+                filtred = filtred.Where(f => Convert.ToString(f.Discount.Value) == f.Discount30).ToList();
+            if (FiltrSaleCb != null && FiltrSaleCb.SelectedIndex == 5)
+                filtred = filtred.Where(f => Convert.ToString(f.Discount.Value) == f.Discount70).ToList();
+            if (string.IsNullOrWhiteSpace(searchText) == false)
+                filtred = filtred.Where(f => f.Title.ToLower().Contains(searchText) || (f.Description != null && f.Description.ToLower().Contains(searchText))).ToList();
             if (FiltrCb.SelectedIndex == 2)
-            {
-                ProductLV.ItemsSource = services.OrderBy(x => x.Cost).ToList();
-            }
-
-            if (FiltrSaleCb.SelectedIndex == 0)
-            {
-                ProductLV.ItemsSource = services.Where(x => x.Discount >= 0 && x.Discount < 5).ToList();
-            }
-            if (FiltrSaleCb.SelectedIndex == 1)
-            {
-                ProductLV.ItemsSource = services.Where(x => x.Discount >= 5 && x.Discount < 15).ToList();
-            }
-            if (FiltrSaleCb.SelectedIndex == 2)
-            {
-                ProductLV.ItemsSource = services.Where(x => x.Discount >= 15 && x.Discount < 30).ToList();
-            }
-            if (FiltrSaleCb.SelectedIndex == 3)
-            {
-                ProductLV.ItemsSource = services.Where(x => x.Discount >= 30 && x.Discount < 70).ToList();
-            }
-            if (FiltrSaleCb.SelectedIndex == 4)
-            {
-                ProductLV.ItemsSource = services.Where(x => x.Discount >= 70 && x.Discount < 100).ToList();
-            }
-            if (FiltrSaleCb.SelectedIndex == 5)
-            {
-                ProductLV.ItemsSource = services;
-            }
+                filtred = filtred.OrderBy(f => f.NewCost).ToList();
+            if (FiltrCb.SelectedIndex == 1)
+                filtred = filtred.OrderByDescending(f => f.NewCost).ToList();
+            ProductLV.ItemsSource = filtred.ToList();
+            CountProductTbl.Text = $"{filtred.Count} из {allService.Count}";
         }
 
+        private void Refresh1()
+        {
+            ProductLV.ItemsSource = DBConnection.schoolPractice.Service.ToList();
+        }
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button button && button.DataContext is Service service)
@@ -106,34 +74,44 @@ namespace Demo2024.Pages
                 EditServiceWindow editServiceWindow = new EditServiceWindow(selectedService);
                 editServiceWindow.ShowDialog();
 
-                Refresh();
+                Refresh1();
             }
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button button && button.DataContext is Service service)
+            try
             {
-                DBConnection.schoolPractice.Service.Remove(service);
-                DBConnection.schoolPractice.SaveChanges();
 
-                Refresh();
+
+                if (sender is Button button && button.DataContext is Service service)
+                {
+                    DBConnection.schoolPractice.Service.Remove(service);
+                    DBConnection.schoolPractice.SaveChanges();
+
+                    Refresh1();
+                }
+            }
+
+            catch 
+            {
+                MessageBox.Show("Нельзя удалить услугу! На неё существует запись. ", " ", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
         private void SearchTbx_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Refresh();
+            Refresh(0);
         }
 
         private void FiltrSaleCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Refresh();
+            Refresh(0);
         }
 
         private void FiltrCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Refresh();
+            Refresh(0);
 
             
         }
@@ -143,7 +121,7 @@ namespace Demo2024.Pages
             AddServiceWindow addServiceWindow = new AddServiceWindow();
             addServiceWindow.ShowDialog();
 
-            Refresh();
+            Refresh1();
         }
     }
 }

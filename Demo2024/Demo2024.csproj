@@ -67,6 +67,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DB\Partials\Service.cs" />
     <Compile Include="Pages\AllServicesClientPage.xaml.cs">
       <DependentUpon>AllServicesClientPage.xaml</DependentUpon>
     </Compile>

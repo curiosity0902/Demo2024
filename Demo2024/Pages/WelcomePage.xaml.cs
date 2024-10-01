@@ -35,13 +35,13 @@ namespace Demo2024.Pages
 
                 if (email == "0000" && password == 0)
                 {
-                    MessageBox.Show("Добро пожаловать, Администратор!");
+                    MessageBox.Show("Добро пожаловать, Администратор!", " ", MessageBoxButton.OK, MessageBoxImage.Information);
                     NavigationService.Navigate(new AllServicesPage());
                 }
 
                 else
                 {
-                    MessageBox.Show("Неверный логин или пароль! Попробуйте снова. ");
+                    MessageBox.Show("Неверный логин или пароль! Попробуйте снова. ", " ", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch

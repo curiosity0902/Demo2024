@@ -54,6 +54,18 @@ Width="320"
 Height="65" 
                 SelectionChanged="FiltrSaleCb_SelectionChanged"
                 >
+                <TextBlock FontFamily="Comic Sans MS"
+                           FontSize="15">Все</TextBlock>
+                <TextBlock FontFamily="Comic Sans MS"
+                           FontSize="15">от 0% до 5%</TextBlock>
+                <TextBlock FontFamily="Comic Sans MS"
+                           FontSize="15">от 5% до 15%</TextBlock>
+                <TextBlock FontFamily="Comic Sans MS"
+                           FontSize="15">от 15% до 30%</TextBlock>
+                <TextBlock FontFamily="Comic Sans MS"
+                           FontSize="15">от 30% до 70%</TextBlock>
+                <TextBlock FontFamily="Comic Sans MS"
+                           FontSize="15">от 70% до 100%</TextBlock>
             </ComboBox>
 
             <ComboBox             
@@ -68,6 +80,13 @@ Height="65"
     Height="65"
     SelectionChanged="FiltrCb_SelectionChanged"
                 >
+                <TextBlock FontFamily="Comic Sans MS"
+                           FontSize="15">По умолчанию</TextBlock>
+                <TextBlock FontFamily="Comic Sans MS"
+                           FontSize="15">По убыванию</TextBlock>
+                <TextBlock FontFamily="Comic Sans MS"
+                           FontSize="15">По возрастанию</TextBlock>
+ 
             </ComboBox>
 
             <ListView x:Name="ProductLV" FontSize="40" VerticalAlignment="Center" Margin="0 80 0 0"
@@ -93,10 +112,31 @@ Height="65"
 
                                         <StackPanel Orientation="Vertical" Width="920">
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock FontSize="26" TextWrapping="Wrap" FontFamily="Comic Sans MS" Text="{Binding Title}" Margin="20 0 0 0"></TextBlock>
+                                                <TextBlock FontSize="26" TextWrapping="Wrap" FontFamily="Comic Sans MS" Text="{Binding Title}" Margin="20 0 0 0">
+                          
+                                                </TextBlock>
 
                                             </StackPanel>
-                                            <TextBlock FontSize="30" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Margin="20 0 0 0" Width="900" Text="{Binding Cost}" TextWrapping="Wrap"/>
+                                            <TextBlock FontSize="25" FontFamily="Comic Sans MS" 
+                                                       HorizontalAlignment="Left" Margin="20 10 0 0" 
+                                                       TextDecorations="Strikethrough"
+                                                       Width="900" Text="{Binding Cost}" TextWrapping="Wrap"/>
+
+                                            <TextBlock FontSize="25" FontFamily="Comic Sans MS"
+                                                       x:Name="NewCostTbl"
+                                                       HorizontalAlignment="Left" Margin="90 -35 0 0" 
+                                                       Width="900" Text="{Binding NewCost,StringFormat=' {0} рублей '}" 
+                                                       TextWrapping="Wrap"/>
+
+                                            <TextBlock FontSize="25" FontFamily="Comic Sans MS" 
+                                                       HorizontalAlignment="Left" Margin="270 -35 0 0" 
+                                                       Width="900" Text="{Binding DurationInMinutes}" TextWrapping="Wrap"/>
+                                            
+                                            <TextBlock 
+                                                       HorizontalAlignment="Left" Margin="20 2 0 0" 
+                                                Text="{Binding Discount, StringFormat=' *скидка {0}%'}"
+                                       FontFamily="Comic Sans MS"
+                                       FontSize="20"/>
 
                                             <StackPanel Orientation="Horizontal">
                                                 <Button BorderBrush="Black"
@@ -154,6 +194,11 @@ Height="65"
                 </Button.Resources>
             </Button>
             
+            <TextBlock x:Name="CountProductTbl" FontFamily="Comic Sans MS"
+                        Grid.Column="4"
+                       Grid.Row="5"
+                       HorizontalAlignment="Right"
+                           FontSize="23">По умолчанию</TextBlock> 
         </Grid>
     </Grid>
 </Page>
