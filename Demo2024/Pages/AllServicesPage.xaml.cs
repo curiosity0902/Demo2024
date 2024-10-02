@@ -136,7 +136,10 @@ namespace Demo2024.Pages
 
         private void AppliicationAdminBtn_Click(object sender, RoutedEventArgs e)
         {
+            ApplicationClientWindow applicationClientWindow = new ApplicationClientWindow();
+            applicationClientWindow.ShowDialog();
 
+            Refresh1();
         }
     }
 }

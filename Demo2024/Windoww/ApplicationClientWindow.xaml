@@ -7,6 +7,99 @@
         mc:Ignorable="d"
         Title="Learn School" Height="450" Width="800">
     <Grid>
+        <Grid Background="#E7FABF">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
         
+
+        <ListView
+      x:Name="ApplicationLv"
+      VerticalAlignment="Center"
+      Grid.Row="0"
+      Grid.Column="0"
+      Grid.ColumnSpan="6"
+      Grid.RowSpan="6" 
+      Width="620"
+      Height="340"
+      HorizontalAlignment="Center"
+      ItemsSource="{Binding clientServices}"
+      ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+      >
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header ="Услуга" Width="245">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock TextWrapping="Wrap"
+                                          FontFamily="Comic Sans MS" 
+                                          FontSize="13" Text="{Binding Service.Title}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header ="Клиент" Width="230">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock FontFamily="Comic Sans MS" 
+                                                 FontSize="13" 
+                                                 Text="{Binding Client.FirstName}"/>
+                                            <TextBlock Text=" "
+                                                 />
+                                            <TextBlock Text="{Binding Client.LastName}"
+                                                 FontFamily="Comic Sans MS" 
+                                                 FontSize="13"
+                                                 />
+                                            <TextBlock Text=" "/>
+                                            <TextBlock Text="{Binding Client.Patronymic}"
+                                                 FontFamily="Comic Sans MS" 
+                                                 FontSize="13"
+                                                 />
+
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Client.Email}"/>
+                                            </StackPanel>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding Client.Phone}"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header ="Время записи" Width="120">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding StartTime, StringFormat = dd.MM.yyyy HH:mm}"/>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        </Grid>
     </Grid>
 </Window>
