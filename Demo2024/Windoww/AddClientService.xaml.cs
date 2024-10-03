@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 using Demo2024.DB;
 
@@ -24,8 +25,6 @@ namespace Demo2024.Windoww
         public static List<Client> clients { get; set; }
         public static List<ClientService> clientServices { get; set; }
 
-        public static ClientService clientService = new ClientService();
-
         Service contextService;
         public AddClientService(Service service)
         {
@@ -36,8 +35,10 @@ namespace Demo2024.Windoww
             clients = new List<Client>(DBConnection.schoolPractice.Client.ToList());
             clientServices = new List<ClientService>(DBConnection.schoolPractice.ClientService.ToList());
 
+            DateServiceDp.DisplayDateStart = DateTime.Now;
+
             NameServiceTbl.Text = $"Название услуги: " + $"{contextService.Title}";
-            DurationTbl.Text = $"Длительность: " + $"{contextService.DurationInMinutes}";
+            DurationTbl.Text = $"Длительность: " + $"{contextService.DurationInSeconds / 60}" + " минут";
 
             this.DataContext = this;
         }
@@ -52,10 +53,27 @@ namespace Demo2024.Windoww
             try
             {
                 StringBuilder error = new StringBuilder();
-                if (ClientsCb.SelectedIndex == -1 || DateServiceDp.SelectedDate == null)
 
+                if (ClientsCb.SelectedIndex == -1 || DateServiceDp.SelectedDate == null || TimeTbx.Text.Trim() == "")
                 {
                     error.AppendLine("Заполните все поля!");
+                }
+
+                int hour = -1;
+                int minute = -1;
+
+                if (TimeTbx.Text.Length == 5 && TimeTbx.Text[2] == ':' &&
+                    int.TryParse(TimeTbx.Text.Substring(0, 2), out hour) &&
+                    int.TryParse(TimeTbx.Text.Substring(3, 2), out minute))
+                {
+                    if (hour < 0 || hour > 23 || minute < 0 || minute > 59)
+                    {
+                        error.AppendLine("Введите корректное время в формате HH:mm!");
+                    }
+                }
+                else
+                {
+                    error.AppendLine("Введите корректное время в формате HH:mm!");
                 }
 
                 if (error.Length > 0)
@@ -64,14 +82,22 @@ namespace Demo2024.Windoww
                 }
                 else
                 {
-                    //service.Title = NameTb.Text.Trim();
-                    //service.Description = DescriptionTb.Text.Trim();
-                    //service.DurationInSeconds = int.Parse(DurationTb.Text.Trim());
-                    //service.Discount = int.Parse(SaleTb.Text.Trim());
-                    //service.Cost = int.Parse(CostTb.Text.Trim());
+                    ClientService clientService = new ClientService();
 
-                    //DBConnection.schoolPractice.Service.Add(service);
-                    //DBConnection.schoolPractice.SaveChanges();
+                    DateTime selectedDate = (DateTime)DateServiceDp.SelectedDate;
+                    DateTime startTime = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, hour, minute, 0);
+
+                    clientService.StartTime = startTime;
+                    clientService.ServiceID = contextService.ID;
+
+                    var selectedClient = ClientsCb.SelectedItem as Client;
+                    clientService.ClientID = selectedClient.ID;
+
+                    DateTime endTime = startTime.AddSeconds(contextService.DurationInSeconds);
+
+                    DBConnection.schoolPractice.ClientService.Add(clientService);
+                    DBConnection.schoolPractice.SaveChanges();
+                    MessageBox.Show($"Услуга будет оказана с {startTime} до {endTime}");
                     Close();
                 }
             }
@@ -80,5 +106,35 @@ namespace Demo2024.Windoww
                 MessageBox.Show("Произошла ошибка!");
             }
         }
+
+        private void TimeTbx_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text, e.Text.Length - 1) && e.Text != ":")
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TimeTbx_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TimeTbx.Text.Length == 5 && TimeTbx.Text[2] == ':')
+            {
+                int hour, minute;
+                if (int.TryParse(TimeTbx.Text.Substring(0, 2), out hour) && int.TryParse(TimeTbx.Text.Substring(3, 2), out minute))
+                {
+                    if (hour < 0 || hour > 23 || minute < 0 || minute > 59)
+                    {
+                        MessageBox.Show("Введите корректное время в формате часы:минуты!");
+                        TimeTbx.Text = string.Empty;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Введите корректное время в формате HH:mm!");
+                    TimeTbx.Text = string.Empty;
+                }
+            }
+        }
+
     }
 }

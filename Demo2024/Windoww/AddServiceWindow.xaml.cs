@@ -36,10 +36,21 @@ namespace Demo2024.Windoww
             try
             {
                 StringBuilder error = new StringBuilder();
-                if (string.IsNullOrWhiteSpace(NameTb.Text) || string.IsNullOrWhiteSpace(DescriptionTb.Text))
+                if (string.IsNullOrWhiteSpace(NameTb.Text) || (DurationTb.Text.Trim() == null) || 
+                    (CostTb.Text.Trim() == null))
 
                 {
                     error.AppendLine("Заполните все поля!");
+                }
+
+                if (int.Parse(DurationTb.Text) > 240)
+                {
+                    MessageBox.Show("Длительность не может быть больше 4 часов!");
+                }
+
+                if (int.Parse(DurationTb.Text) <= 0)
+                {
+                    MessageBox.Show("Длительность не может быть отрицательной!");
                 }
 
                 if (error.Length > 0)
@@ -50,7 +61,7 @@ namespace Demo2024.Windoww
                 {
                     service.Title = NameTb.Text.Trim();
                     service.Description = DescriptionTb.Text.Trim();
-                    service.DurationInSeconds = int.Parse(DurationTb.Text.Trim());
+                    service.DurationInSeconds = int.Parse(DurationTb.Text) * 60;
                     service.Discount = int.Parse(SaleTb.Text.Trim());
                     service.Cost = int.Parse(CostTb.Text.Trim());
 
@@ -75,6 +86,23 @@ namespace Demo2024.Windoww
             System.Text.RegularExpressions.Regex reg = new System.Text.RegularExpressions.Regex("[^0-9]");
             return reg.IsMatch(str);
 
+        }
+
+        private void AddPhotoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string selectedImagePath = $"/Услуги школы/{openFileDialog.SafeFileName}";
+
+                PhotoService.Source = new BitmapImage(new Uri(selectedImagePath, UriKind.Relative));
+
+                service.MainImagePath = selectedImagePath;
+
+                DBConnection.schoolPractice.SaveChanges();
+            }
         }
     }
 }

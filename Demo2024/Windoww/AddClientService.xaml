@@ -24,7 +24,16 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-
+            <TextBlock
+FontSize="36"
+Style="{StaticResource TextBlWelcome}"
+Margin="35 0 0 0"
+Text="Запись на услугу"
+Grid.Column="0"
+Grid.Row="0"
+Grid.ColumnSpan="4"
+HorizontalAlignment="Left"
+VerticalAlignment="Center"/>
             <TextBlock x:Name="NameServiceTbl" FontFamily="Comic Sans MS"
 TextWrapping="Wrap"
 Grid.Column="0"
@@ -81,8 +90,12 @@ Width="270"
 Height="45"
 />
 <TextBox
+PreviewTextInput="TimeTbx_PreviewTextInput" 
+TextChanged="TimeTbx_TextChanged"
+x:Name="TimeTbx"
 Width="110"
 Height="40"
+FontSize="25"
 Grid.Column="0"
 Grid.Row="4"
 Grid.RowSpan="2"

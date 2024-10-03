@@ -46,40 +46,41 @@
                                 <DataTemplate>
                                     <StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock TextWrapping="Wrap" Width="225"
+                                            <TextBlock TextWrapping="Wrap" Width="215"
                                           FontFamily="Comic Sans MS" 
-                                          FontSize="13" Text="{Binding Service.Title}"/>
+                                          FontSize="13" Foreground="Black" Text="{Binding Service.Title}"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header ="Клиент" Width="220">
+                        <GridViewColumn Header ="Клиент" Width="210">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock FontFamily="Comic Sans MS" 
-                                                 FontSize="13" 
+                                                 FontSize="13"
+                                                 Foreground="Black"
                                                  Text="{Binding Client.FirstName}"/>
                                             <TextBlock Text=" "
                                                  />
-                                            <TextBlock Text="{Binding Client.LastName}"
+                                                <TextBlock Foreground="Black" Text="{Binding Client.LastName}"
                                                  FontFamily="Comic Sans MS" 
                                                  FontSize="13"
                                                  />
                                             <TextBlock Text=" "/>
-                                            <TextBlock Text="{Binding Client.Patronymic}"
+                                                <TextBlock Foreground="Black" Text="{Binding Client.Patronymic}"
                                                  FontFamily="Comic Sans MS" 
                                                  FontSize="13"
                                                  />
 
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding Client.Email}"/>
+                                                <TextBlock Foreground="Black" Text="{Binding Client.Email}"/>
                                             </StackPanel>
                                             <StackPanel>
-                                                <TextBlock Text="{Binding Client.Phone}"/>
+                                                <TextBlock Foreground="Black" Text="{Binding Client.Phone}"/>
                                             </StackPanel>
                                         </StackPanel>
                                 </DataTemplate>
@@ -89,18 +90,20 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel>
-                                        <TextBlock Text="{Binding StartTime, StringFormat = dd.MM.yyyy HH:mm}"/>
+                                            <TextBlock Foreground="Black"
+                                                FontFamily="Comic Sans MS" Text="{Binding StartTime, StringFormat = dd.MM.yyyy HH:mm}"/>
 
                                     </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                            <GridViewColumn Header ="Время записи" Width="120">
+                            <GridViewColumn Header ="Осталось до записи" Width="130">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel>
                                             <TextBlock Text="{Binding OstatokHours}"
+                                                       FontFamily="Comic Sans MS" 
                                                        Foreground="{Binding LeftOurs}"
                                                        />
                                         </StackPanel>

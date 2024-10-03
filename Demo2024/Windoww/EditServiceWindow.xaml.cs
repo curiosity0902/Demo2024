@@ -44,7 +44,7 @@ namespace Demo2024.Windoww
             {
                 StringBuilder error = new StringBuilder();
                 Service service = contextService;
-                if (string.IsNullOrWhiteSpace(NameTb.Text))
+                if (string.IsNullOrWhiteSpace(NameTb.Text) || CostTb.Text.Trim() == "" || DurationTb.Text.Trim() == "")
              
                 {
                     error.AppendLine("Заполните все поля!");
@@ -58,6 +58,11 @@ namespace Demo2024.Windoww
                 if (int.Parse(DurationTb.Text) > 240)
                 {
                     MessageBox.Show("Длительность не может быть больше 4 часов!");
+                }
+
+                if (int.Parse(DurationTb.Text) <= 0 )
+                {
+                    MessageBox.Show("Длительность не может быть отрицательной!");
                 }
 
                 if (int.Parse(SaleTb.Text) > 100)
@@ -104,23 +109,17 @@ namespace Demo2024.Windoww
 
         private void AddPhotoBtn_Click(object sender, RoutedEventArgs e)
         {
-            // Создаем диалог для выбора файла
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp"; // Фильтр для изображений
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp"; 
 
-            // Показываем диалог и проверяем, выбрал ли пользователь файл
             if (openFileDialog.ShowDialog() == true)
             {
-                // Получаем путь к выбранному файлу
                 string selectedImagePath = $"/Услуги школы/{openFileDialog.SafeFileName}";
 
-                // Устанавливаем источник изображения в элемент Image
                 PhotoService.Source = new BitmapImage(new Uri(selectedImagePath, UriKind.Relative));
 
-                // Обновляем MainImagePath объекта Service
                 contextService.MainImagePath = selectedImagePath;
 
-                // Сохраняем изменения в базе данных
                 DBConnection.schoolPractice.SaveChanges();
             }
         }
