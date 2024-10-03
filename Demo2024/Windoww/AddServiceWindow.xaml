@@ -90,6 +90,7 @@ FontSize="16"
 Background="White"
 HorizontalAlignment="Left"
 VerticalAlignment="Center"
+PreviewTextInput="NumericOnly"
 />
 
             <TextBlock
@@ -105,19 +106,20 @@ VerticalAlignment="Center"
 />
 
             <TextBox
-Margin="20 -25 0 25"
+Margin="20,0,0,41"
 Style="{StaticResource TextBoxWelcome}"
 x:Name="DurationTb"
 Padding="6"
-Grid.Row="3"
+Grid.Row="2"
 Grid.Column="1"
-Grid.ColumnSpan="4"
+Grid.ColumnSpan="2"
 Width="180"
 Height="40"
 FontSize="16"
 Background="White"
 HorizontalAlignment="Left"
-VerticalAlignment="Center"
+VerticalAlignment="Bottom"
+PreviewTextInput="NumericOnly" Grid.RowSpan="2"
 />
 
             <TextBlock
@@ -133,6 +135,7 @@ VerticalAlignment="Center"
 />
 
             <TextBox
+PreviewTextInput="NumericOnly"
 Margin="20 -25 0 45"
 Style="{StaticResource TextBoxWelcome}"
 x:Name="SaleTb"

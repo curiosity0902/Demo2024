@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,18 +27,26 @@ namespace Demo2024.Windoww
         public static List<ClientService> clientServices { get; set; }
         public ApplicationClientWindow()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            Refresh();
+        }
 
-            DateTime today = DateTime.Today;
-            DateTime tomorrow = today.AddDays(1);
+        public async void Refresh() 
+        {
+            while (true)
+            {
+                DateTime today = DateTime.Now;
+                DateTime tomorrow = today.AddDays(1);
 
-            services = new List<Service>(DBConnection.schoolPractice.Service.ToList());
-            clients = new List<Client>(DBConnection.schoolPractice.Client.ToList());
-            clientServices = new List<ClientService>(DBConnection.schoolPractice.ClientService.
-                Where(cs => (DateTime)cs.StartTime >= today).
+                services = new List<Service>(DBConnection.schoolPractice.Service.ToList());
+                clients = new List<Client>(DBConnection.schoolPractice.Client.ToList());
+                clientServices = new List<ClientService>(DBConnection.schoolPractice.ClientService.
+                Where(cs => (DateTime)cs.StartTime >= today && (DateTime)cs.StartTime <= tomorrow).
                 OrderBy(cs => (DateTime)cs.StartTime).ToList());
 
-            this.DataContext = this;
+                ApplicationLv.ItemsSource = clientServices;
+                await Task.Delay(30000);
+            }
         }
     }
 }

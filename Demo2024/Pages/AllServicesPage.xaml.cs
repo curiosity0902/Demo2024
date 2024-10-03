@@ -22,7 +22,8 @@ namespace Demo2024.Pages
     /// </summary>
     public partial class AllServicesPage : Page
     {
-        public static List<Service> services { get; set; }   
+        public static List<Service> services { get; set; }
+        public static List<ClientService> clientServices { get; set; }
         public AllServicesPage()
         {
             InitializeComponent();
@@ -32,6 +33,7 @@ namespace Demo2024.Pages
 
 
             services = new List<Service>(DBConnection.schoolPractice.Service.ToList());
+            clientServices = new List<ClientService>(DBConnection.schoolPractice.ClientService.ToList());
             ProductLV.ItemsSource = services;
             this.DataContext = this;
         }
@@ -126,7 +128,15 @@ namespace Demo2024.Pages
 
         private void CheckLessonBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (sender is Button button && button.DataContext is Service service)
+            {
+                Service selectedService = service;
 
+                AddClientService addClientService = new AddClientService(selectedService);
+                addClientService.ShowDialog();
+
+                Refresh1();
+            }
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)

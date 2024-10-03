@@ -47,17 +47,7 @@
         Margin="20 0 0 0"
         VerticalAlignment="Center"
         />
-            <Border BorderBrush="Black"
-                BorderThickness="2" 
-                CornerRadius="10"
-                Grid.Row="1"
-                Grid.Column="1"
-                Grid.ColumnSpan="4"
-                Width="580"
-                Height="40"
-                Background="White"
-                    >
-                <TextBox
+            <TextBox
         Padding="6"
         Style="{StaticResource TextBoxWelcome}"
         x:Name="NameTb"
@@ -72,9 +62,8 @@
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         ></TextBox>
-            </Border>
 
-            <TextBlock
+                <TextBlock
 Style="{StaticResource TextBlWelcome}"
 FontSize="22"
 Text="Стоимость"
@@ -86,20 +75,57 @@ Margin="20 0 0 25"
 VerticalAlignment="Center"
 />
 
-        
+
             <TextBox
-Margin="20 0 0 25"
+Margin="20,0,0,29"
 Style="{StaticResource TextBoxWelcome}"
 x:Name="CostTb"
 Padding="6"
 Grid.Row="2"
 Grid.Column="1"
-Grid.ColumnSpan="4"
-Width="180"
+Width="80"
 Height="40"
 FontSize="16"
 Background="White"
 HorizontalAlignment="Left"
+VerticalAlignment="Bottom"
+PreviewTextInput="NumericOnly"
+/>
+
+            <TextBlock
+Style="{StaticResource TextBlWelcome}"
+FontSize="18"
+Text=" рублей"
+Grid.Column="1"
+Grid.Row="2"
+Margin="-40 0 0 30"
+Grid.ColumnSpan="2"            
+HorizontalAlignment="Center"
+VerticalAlignment="Center"
+/>
+
+            <TextBlock
+Style="{StaticResource TextBlWelcome}"
+FontSize="18"
+Text=" минут"
+Grid.Column="1"
+Grid.Row="3"
+Margin="-50 0 0 50"
+Grid.ColumnSpan="2"            
+HorizontalAlignment="Center"
+VerticalAlignment="Center"
+/>
+
+
+            <TextBlock
+Style="{StaticResource TextBlWelcome}"
+FontSize="18"
+Text=" %"
+Grid.Column="1"
+Grid.Row="4"
+Margin="-80 -70 0 0"
+Grid.ColumnSpan="2"            
+HorizontalAlignment="Center"
 VerticalAlignment="Center"
 />
 
@@ -123,12 +149,13 @@ Padding="6"
 Grid.Row="3"
 Grid.Column="1"
 Grid.ColumnSpan="4"
-Width="180"
+Width="80"
 Height="40"
 FontSize="16"
 Background="White"
 HorizontalAlignment="Left"
 VerticalAlignment="Center"
+PreviewTextInput="NumericOnly"
 />
 
             <TextBlock
@@ -151,12 +178,13 @@ Padding="6"
 Grid.Row="4"
 Grid.Column="1"
 Grid.ColumnSpan="4"
-Width="180"
+Width="80"
 Height="40"
 FontSize="16"
 Background="White"
 HorizontalAlignment="Left"
 VerticalAlignment="Center"
+PreviewTextInput="NumericOnly"
 />
 
             <TextBlock
@@ -191,13 +219,9 @@ VerticalAlignment="Top"
 
             <Image Grid.Column="3"
         Grid.ColumnSpan="2"
-        Grid.Row="1"
-        Grid.RowSpan="3"
-        Margin="-20 -50 0 0"
-        x:Name="PhotoWorker">
-                <Image.Clip>
-                    <RectangleGeometry RadiusX="130" RadiusY="130" Rect="0,0,210,210"/>
-                </Image.Clip>
+        Grid.Row="2"
+        Grid.RowSpan="2"
+        x:Name="PhotoService">
             </Image>
 
             <Button
@@ -239,7 +263,7 @@ VerticalAlignment="Top"
                     Content="Изменить фото"
                     Width="210"
                     Height="40"                    
-                    Margin="20 80 0 0">
+                    Margin="20 80 0 0" Click="AddPhotoBtn_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="15"/>

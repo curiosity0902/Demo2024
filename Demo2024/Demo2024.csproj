@@ -97,6 +97,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DB\Partials\ClientService.cs" />
     <Compile Include="DB\Partials\Service.cs" />
     <Compile Include="DB\Product.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -124,6 +125,9 @@
     </Compile>
     <Compile Include="Pages\BeginPage.xaml.cs">
       <DependentUpon>BeginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windoww\AddClientService.xaml.cs">
+      <DependentUpon>AddClientService.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windoww\AddServiceWindow.xaml.cs">
       <DependentUpon>AddServiceWindow.xaml</DependentUpon>
@@ -160,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\WelcomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windoww\AddClientService.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

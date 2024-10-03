@@ -33,21 +33,20 @@
       Grid.Column="0"
       Grid.ColumnSpan="6"
       Grid.RowSpan="6" 
-      Width="620"
+      Width="690"
       Height="340"
       HorizontalAlignment="Center"
-      ItemsSource="{Binding clientServices}"
       ScrollViewer.HorizontalScrollBarVisibility="Hidden"
       >
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
-                        <GridViewColumn Header ="Услуга" Width="245">
+                        <GridViewColumn Header ="Услуга" Width="225">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock TextWrapping="Wrap"
+                                            <TextBlock TextWrapping="Wrap" Width="225"
                                           FontFamily="Comic Sans MS" 
                                           FontSize="13" Text="{Binding Service.Title}"/>
                                         </StackPanel>
@@ -55,7 +54,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header ="Клиент" Width="230">
+                        <GridViewColumn Header ="Клиент" Width="220">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel>
@@ -96,7 +95,20 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                    </GridView.Columns>
+
+                            <GridViewColumn Header ="Время записи" Width="120">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding OstatokHours}"
+                                                       Foreground="{Binding LeftOurs}"
+                                                       />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        
+                        </GridView.Columns>
                 </GridView>
             </ListView.View>
         </ListView>
