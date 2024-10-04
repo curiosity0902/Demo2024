@@ -225,7 +225,7 @@ VerticalAlignment="Top"
             </Image>
 
             <Button
-        Margin="20 50 0 0"
+        Margin="20 14 0 0"
         x:Name="RedactBtn"
         Content="Редактировать"
         Grid.Column="3"
@@ -236,11 +236,11 @@ VerticalAlignment="Top"
         BorderThickness="3"
         Background="#04A0FF"
         FontFamily="Comic Sans MS" 
-        FontSize="21"
+        FontSize="18"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         Width="210"
-        Height="40"
+        Height="32"
         Click="RedactBtn_Click" 
         >
                 <Button.Resources>
@@ -255,15 +255,36 @@ VerticalAlignment="Top"
                     BorderThickness="3"
                     Background="#04A0FF"
                     FontFamily="Comic Sans MS" 
-                    FontSize="21"
+                    FontSize="18"
                     Grid.Column="3"
                     Grid.ColumnSpan="2"
                     Grid.Row="3"
                     Grid.RowSpan="2"
                     Content="Изменить фото"
                     Width="210"
-                    Height="40"                    
-                    Margin="20 80 0 0" Click="AddPhotoBtn_Click">
+                    Height="32"                    
+                    Margin="20 77 0 0" Click="AddPhotoBtn_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Button x:Name="AlsoPhotoBtn"
+                 BorderBrush="Black"
+                 BorderThickness="3"
+                 Background="#04A0FF"
+                 FontFamily="Comic Sans MS" 
+                 FontSize="18"
+                 Grid.Column="3"
+                 Grid.ColumnSpan="2"
+                 Grid.Row="4"
+                 Grid.RowSpan="2"
+                 Content="Добавить фото"
+                 Width="210"
+                 Height="32"                    
+                 Margin="20 90 0 0" Click="AlsoPhotoBtn_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="15"/>

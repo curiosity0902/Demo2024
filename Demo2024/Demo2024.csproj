@@ -132,6 +132,9 @@
     <Compile Include="Windoww\AddServiceWindow.xaml.cs">
       <DependentUpon>AddServiceWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windoww\AllPhotoServiceWindow.xaml.cs">
+      <DependentUpon>AllPhotoServiceWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windoww\ApplicationClientWindow.xaml.cs">
       <DependentUpon>ApplicationClientWindow.xaml</DependentUpon>
     </Compile>
@@ -172,6 +175,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windoww\AddServiceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windoww\AllPhotoServiceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

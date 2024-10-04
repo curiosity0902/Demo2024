@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Demo2024.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="830" d:DesignWidth="1550"
-      Title="WelcomePage">
+      Title="Learn School">
 
     <Grid>
         <Grid Background="#E7FABF">

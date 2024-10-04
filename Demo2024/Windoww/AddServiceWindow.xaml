@@ -84,13 +84,24 @@ Padding="6"
 Grid.Row="2"
 Grid.Column="1"
 Grid.ColumnSpan="4"
-Width="180"
+Width="80"
 Height="40"
 FontSize="16"
 Background="White"
 HorizontalAlignment="Left"
 VerticalAlignment="Center"
 PreviewTextInput="NumericOnly"
+/>
+            <TextBlock
+Style="{StaticResource TextBlWelcome}"
+FontSize="18"
+Text=" рублей"
+Grid.Column="1"
+Grid.Row="2"
+Margin="-40 0 0 30"
+Grid.ColumnSpan="2"            
+HorizontalAlignment="Center"
+VerticalAlignment="Center"
 />
 
             <TextBlock
@@ -113,7 +124,7 @@ Padding="6"
 Grid.Row="2"
 Grid.Column="1"
 Grid.ColumnSpan="2"
-Width="180"
+Width="80"
 Height="40"
 FontSize="16"
 Background="White"
@@ -143,11 +154,37 @@ Padding="6"
 Grid.Row="4"
 Grid.Column="1"
 Grid.ColumnSpan="4"
-Width="180"
+Width="80"
 Height="40"
 FontSize="16"
 Background="White"
 HorizontalAlignment="Left"
+VerticalAlignment="Center"
+/>
+
+
+            <TextBlock
+Style="{StaticResource TextBlWelcome}"
+FontSize="18"
+Text=" минут"
+Grid.Column="1"
+Grid.Row="3"
+Margin="-50 0 0 50"
+Grid.ColumnSpan="2"            
+HorizontalAlignment="Center"
+VerticalAlignment="Center"
+/>
+
+
+            <TextBlock
+Style="{StaticResource TextBlWelcome}"
+FontSize="18"
+Text=" %"
+Grid.Column="1"
+Grid.Row="4"
+Margin="-80 -70 0 0"
+Grid.ColumnSpan="2"            
+HorizontalAlignment="Center"
 VerticalAlignment="Center"
 />
 

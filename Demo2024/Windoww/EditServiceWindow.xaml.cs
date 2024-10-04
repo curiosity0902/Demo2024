@@ -123,6 +123,12 @@ namespace Demo2024.Windoww
                 DBConnection.schoolPractice.SaveChanges();
             }
         }
+
+        private void AlsoPhotoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var allPhotoWindow = new AllPhotoServiceWindow(contextService);
+            allPhotoWindow.Show();
+        }
     }
     
 }

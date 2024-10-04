@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Demo2024.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="830" d:DesignWidth="1550"
-      Title="AllServicesClientPage">
+      Title="Learn School">
 
     <Grid>
         <Grid Background="#E7FABF">
@@ -27,78 +27,193 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
+            <TextBlock
+  Style="{StaticResource TextBlWelcome}"
+  Margin="30 0 0 0"
+  Text="Услуги Learn School"
+  Grid.Column="0"
+  Grid.Row="0"
+  Grid.ColumnSpan="2"
+  FontSize="52"
+  FontWeight="Bold"
+  HorizontalAlignment="Left"
+  VerticalAlignment="Center"
+  />
+            <TextBlock x:Name="CountProductTbl" FontFamily="Comic Sans MS"
+            Grid.Column="4"
+            Grid.Row="3"
+            Margin=" 0 20 0 0"
+            HorizontalAlignment="Center"
+            FontSize="25">По умолчанию</TextBlock>
+
             <TextBox x:Name="SearchTbx"
+            
             FontFamily="Comic Sans MS"
-            FontSize="23"
-            Grid.Column="0"
+            FontSize="20"
+            Grid.Column="4"
             Grid.ColumnSpan="2"
             Background="White"
-            Margin="200 0 0 0"
-            Grid.Row="0"   
-            Width="380"
-            Height="65"
+            Margin="0 0 0 0"
+            Grid.Row="1"   
+            Width="280"
+            Height="50"
             VerticalAlignment="Center"
-            HorizontalAlignment="Left"    
+            HorizontalAlignment="Center"    
             TextChanged="SearchTbx_TextChanged"
             />
 
             <ComboBox             
 x:Name="FiltrSaleCb"
-Grid.Column="2"
-Grid.Row="0"
-Grid.ColumnSpan="2" 
-Margin="0 0 240 0"
+Grid.Column="4"
+Grid.Row="1"
+Grid.RowSpan="2"
+Margin="0 40 0 0"
+Grid.ColumnSpan="2"
 FontFamily="Comic Sans MS"
-FontSize="21"
-Width="320"
-Height="65" 
+FontSize="28"
+Width="280"
+Height="50" 
                 SelectionChanged="FiltrSaleCb_SelectionChanged"
                 >
+                <TextBlock FontFamily="Comic Sans MS"
+                           FontSize="20">Все</TextBlock>
+                <TextBlock FontFamily="Comic Sans MS"
+                           FontSize="20">от 0% до 5%</TextBlock>
+                <TextBlock FontFamily="Comic Sans MS"
+                           FontSize="20">от 5% до 15%</TextBlock>
+                <TextBlock FontFamily="Comic Sans MS"
+                           FontSize="20">от 15% до 30%</TextBlock>
+                <TextBlock FontFamily="Comic Sans MS"
+                           FontSize="20">от 30% до 70%</TextBlock>
+                <TextBlock FontFamily="Comic Sans MS"
+                           FontSize="20">от 70% до 100%</TextBlock>
             </ComboBox>
 
             <ComboBox             
     x:Name="FiltrCb"
-    Grid.Column="3"
-    Grid.Row="0"
+    Grid.Column="4"
+    Grid.Row="2"
     Grid.ColumnSpan="2" 
-              Margin="0 0 150 0"
+    Margin="0 80 0 0"
     FontFamily="Comic Sans MS"
-    FontSize="21"
-    Width="320"
-    Height="65"
+    FontSize="28"
+    Width="280"
+    Height="50"
     SelectionChanged="FiltrCb_SelectionChanged"
                 >
+                <TextBlock FontFamily="Comic Sans MS"
+                           FontSize="20">По умолчанию</TextBlock>
+                <TextBlock FontFamily="Comic Sans MS"
+                           FontSize="20">По убыванию</TextBlock>
+                <TextBlock FontFamily="Comic Sans MS"
+                           FontSize="20">По возрастанию</TextBlock>
+
             </ComboBox>
 
-            <ListView x:Name="ProductLV" FontSize="40" VerticalAlignment="Center" Margin="0 80 0 0"
+            <ListView x:Name="ProductLV" FontSize="40" VerticalAlignment="Center" Margin="0 80 290 0"
                   Grid.Column="0" Grid.ColumnSpan="5" 
                   Grid.Row="0" Grid.RowSpan="6"
                   d:ItemsSource="{d:SampleData ItemCount=101}"
                   Width="1200" Height="620" >
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <UniformGrid Rows="101" Columns="1"/>
+                        <UniformGrid Columns="1"/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderThickness="2" BorderBrush="Black" Margin="0" Padding="1">
-                            <StackPanel>
-                                <StackPanel >
-                                    <StackPanel Orientation="Horizontal">
+                        <Border BorderThickness="2" 
+                                BorderBrush="Black" 
+                                Margin="0" 
+                                Padding="2"
+                                Width="1160"
+                                >
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Discount}" Value="0">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                        </DataTrigger>
 
-                                        <StackPanel Orientation="Horizontal" Width="190" Margin="15">
-                                            <Image Source="{Binding MainImagePath}" Width="190"/>
-                                        </StackPanel>
+                                        <DataTrigger Binding="{Binding Discount}" Value="5">
+                                            <Setter Property="Background" Value="#E6EED5"/>
+                                        </DataTrigger>
 
-                                        <StackPanel Orientation="Vertical" Width="920">
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock FontSize="26" TextWrapping="Wrap" FontFamily="Comic Sans MS" Text="{Binding Title}" Margin="20 0 0 0"></TextBlock>
+                                        <DataTrigger Binding="{Binding Discount}" Value="15">
+                                            <Setter Property="Background" Value="#E6EED5"/>
+                                        </DataTrigger>
 
-                                            </StackPanel>
-                                            <TextBlock FontSize="30" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Margin="20 0 0 0" Width="900" Text="{Binding Cost}" TextWrapping="Wrap"/>
-                                        </StackPanel>
+                                        <DataTrigger Binding="{Binding Discount}" Value="10">
+                                            <Setter Property="Background" Value="#E6EED5"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Discount}" Value="20">
+                                            <Setter Property="Background" Value="#E6EED5"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Discount}" Value="25">
+                                            <Setter Property="Background" Value="#E6EED5"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding MainImagePath}" Width="190"/>
+
+                                <StackPanel>
+                                    <TextBlock FontSize="25" TextWrapping="Wrap"
+                                               FontFamily="Comic Sans MS" 
+                                               Margin="20 0 0 0"
+                                               Text="{Binding Title}">
+                                    </TextBlock>
+
+                                    <StackPanel Orientation="Horizontal" Margin="15 0 0 0">
+                                        <TextBlock FontSize="21" FontFamily="Comic Sans MS" 
+                                                       HorizontalAlignment="Left"
+                                                       Margin="20 0 0 0"
+                                                       TextDecorations="Strikethrough"
+                                                       Text="{Binding Cost}" TextWrapping="Wrap">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Discount}" Value="0">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+
+                                        <TextBlock FontSize="21" FontFamily="Comic Sans MS"
+                                                       x:Name="NewCostTbl"
+                                                       
+                                                       HorizontalAlignment="Left" 
+                                                       Text="{Binding NewCost,StringFormat=' {0} рублей '}" 
+                                                       TextWrapping="Wrap"/>
+
+                                        <TextBlock FontSize="21" FontFamily="Comic Sans MS" 
+                                                       HorizontalAlignment="Left" 
+                                                       
+                                                       Text="{Binding DurationInMinutes}" TextWrapping="Wrap"/>
+
                                     </StackPanel>
+
+
+                                    <TextBlock Margin="20 0 0 0"
+                                                       HorizontalAlignment="Left"
+                                                Text="{Binding Discount, StringFormat=' *скидка {0}%'}"
+                                       FontFamily="Comic Sans MS"
+                                       FontSize="18">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Discount}" Value="0">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
                                 </StackPanel>
                             </StackPanel>
                         </Border>
@@ -106,6 +221,28 @@ Height="65"
                 </ListView.ItemTemplate>
             </ListView>
 
+            <Button x:Name="BackBtn"
+             Margin="0 0 0 40"
+   Background="#04A0FF"
+ FontSize="21"    
+ FontFamily="Comic Sans MS"
+ BorderBrush="Black"
+ BorderThickness="3"
+ Grid.Column="4"
+ Grid.ColumnSpan="1"
+ Grid.Row="4"
+ Grid.RowSpan="1"
+ Content="Назад"
+ Width="280"
+ Height="55"
+ Click="BackBtn_Click"
+>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </Grid>
     </Grid>
 </Page>

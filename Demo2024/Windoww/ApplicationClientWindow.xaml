@@ -33,7 +33,7 @@
       Grid.Column="0"
       Grid.ColumnSpan="6"
       Grid.RowSpan="6" 
-      Width="690"
+      Width="710"
       Height="340"
       HorizontalAlignment="Center"
       ScrollViewer.HorizontalScrollBarVisibility="Hidden"
@@ -46,7 +46,7 @@
                                 <DataTemplate>
                                     <StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock TextWrapping="Wrap" Width="215"
+                                            <TextBlock TextWrapping="Wrap" Width="190"
                                           FontFamily="Comic Sans MS" 
                                           FontSize="13" Foreground="Black" Text="{Binding Service.Title}"/>
                                         </StackPanel>

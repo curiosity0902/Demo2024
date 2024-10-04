@@ -36,6 +36,9 @@ namespace Demo2024.Windoww
             try
             {
                 StringBuilder error = new StringBuilder();
+
+                string title = DBConnection.schoolPractice.Service.ToString();
+
                 if (string.IsNullOrWhiteSpace(NameTb.Text) || (DurationTb.Text.Trim() == null) || 
                     (CostTb.Text.Trim() == null))
 
@@ -47,6 +50,11 @@ namespace Demo2024.Windoww
                 {
                     MessageBox.Show("Длительность не может быть больше 4 часов!");
                 }
+
+                //if (int.Parse(NameTb.Text == DBConnection)
+                //{
+                //    MessageBox.Show("Длительность не может быть больше 4 часов!");
+                //}
 
                 if (int.Parse(DurationTb.Text) <= 0)
                 {
@@ -101,8 +109,10 @@ namespace Demo2024.Windoww
 
                 service.MainImagePath = selectedImagePath;
 
-                DBConnection.schoolPractice.SaveChanges();
+                
             }
+            DBConnection.schoolPractice.SaveChanges();
+           
         }
     }
 }

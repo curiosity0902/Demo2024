@@ -84,8 +84,6 @@ namespace Demo2024.Pages
         {
             try
             {
-
-
                 if (sender is Button button && button.DataContext is Service service)
                 {
                     DBConnection.schoolPractice.Service.Remove(service);
